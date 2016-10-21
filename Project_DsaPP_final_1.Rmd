@@ -15,8 +15,8 @@ data_essays <-read.csv("essays.csv")
 data_donations <- read.csv("donations.csv")
 data_submissions <- read.csv("sampleSubmissions.csv")
 ```
-
-#Understanding the proportions of projects that have been fully funded
+#Exploratory Analysis
+#1.Understanding the proportions of projects that have been fully funded
 ```{r}
 data_fullyFunded = data_outcomes$fully_funded
 data_fullyFunded_table = (table(data_fullyFunded))
@@ -37,7 +37,7 @@ prop_fullyfunded = (data_fullyFunded_freq$Freq[data_fullyFunded_freq$data_fullyF
 Analysis
 About 70% of the projects have been fully funded
 
-#Understanding the proportion of Exciting projets                                  
+#2.Understanding the proportion of Exciting projets                                  
 ```{r}
 data_excitingProjects = data_outcomes$is_exciting
 data_excitingProjects.freq = as.data.frame(table(data_excitingProjects))
@@ -54,7 +54,7 @@ Analysis
 Even though about 70% of the projects are fully funded, only 0.059% of the total projects can be deemed exciting from a business stand point. This is worrying. 
 
 
-#Examinining the factors which form criteria for an exciting projects
+#3.Examinining the factors which form criteria for an exciting projects
 ```{r}
 # the number of projects that had atleast one teacher referred donor
 
@@ -77,7 +77,7 @@ prop
 Analysis:about 23% of the total projects(ignoring the projects for which the information is not available), are atleast one teacher referred donor
 
 
-Projects with atleast one Green donation
+#4.Projects with atleast one Green donation
 ```{r}
 data_atLeastOneGreenDonation <- data_outcomes$at_least_1_green_donation
 data_atLeastOneGreenDonation.freq <- as.data.frame(table(data_atLeastOneGreenDonation))  
@@ -99,7 +99,7 @@ About 72% of the projects have atleast one donor who pays via credit card/giftca
 
 
 
-# Q.Are schools with higher poverty levels likely to get funded any more than schools with lower poverty levels. 
+#5Are schools with higher poverty levels likely to get funded any more than schools with lower poverty levels. 
 ```{r}
 #analysing by poverty level 
 
@@ -126,7 +126,7 @@ Analysis:
 Maximum number of projects are posted by schools with highest poverty levels.
 While greater proportion of projects from schools with highest poverty level are funded, however, it difference is not too significant. The povertly level of the school does not seem to matter all the much on the funding aspect of the project.This is a matter of concern. The next question to be asked is if donors look at the schools poverty while making a donation? 
 
-
+#SECTION2 : DATA STORY
 #Are projects likely to get fully funded based on the type of location ?
 Analysing by the type of location 
 ```{r}
@@ -242,8 +242,8 @@ Infact 0.05% of the neighborhoods make 23% of donation transactions.
 The next question to be asked is if the total donation made by these zipcodes is a lot more than the other zipcodes. 
 
 
-
-#Are peoply like to make more donations in certain months??
+#DATA STORY
+#2.Are peoply like to make more donations in certain months??
 
 ```{r}
 mon.donation<-c()
@@ -268,7 +268,7 @@ Maximum number of donations are made in 3 months of December,October and january
 These are also the festive months. while the least donations are transacted in the summer months of May, June and July accounting to only 11% of the toal transactions.
 
 
-#Some Questions to the partners
+#PART3 : Some Questions to the partners
 
 Q.What are the income levels of various neighbourhoods that form the donor audience for the site? 
 
