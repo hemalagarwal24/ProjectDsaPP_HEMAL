@@ -6,18 +6,22 @@ output: html_document
 ---
 
 
-```{r)}
+```{r}
 setwd("C:/Users/Adroit/Desktop/files_dssap")
 data_outcomes <- read.csv("outcomes.csv")
 data_projects<- read.csv("projects.csv")
-data_resources <- read.csv("resources.csv")
-data_essays <-read.csv("essays.csv")
+#data_resources <- read.csv("resources.csv")
+#data_essays <-read.csv("essays.csv")
 data_donations <- read.csv("donations.csv")
-data_submissions <- read.csv("sampleSubmissions.csv")
+#data_submissions <- read.csv("sampleSubmissions.csv")
+
 ```
 #Exploratory Analysis
 #1.Understanding the proportions of projects that have been fully funded
+
+
 ```{r}
+
 data_fullyFunded = data_outcomes$fully_funded
 data_fullyFunded_table = (table(data_fullyFunded))
 data_fullyFunded_freq <- as.data.frame((table(data_fullyFunded)))
@@ -25,7 +29,7 @@ data_fullyFunded_freq <- as.data.frame((table(data_fullyFunded)))
 #     f      t 
 #188643 430683 
 barplot(data_fullyFunded_table)
-count(data_fullyFunded)
+as.data.frame(table(data_fullyFunded))
 # x   freq
 #1 f 188643
 #2 t 430683
@@ -46,7 +50,8 @@ data_excitingProjects.freq = as.data.frame(table(data_excitingProjects))
 #2                     t  36710
 barplot(table(data_excitingProjects))
 #proportion of exciting projects
-length(Exciting_project)/ length(data_outcomes$is_exciting)
+prop_exciting<- data_excitingProjects.freq$Freq[(data_excitingProjects.freq$data_excitingProjects=="t")]/ length(data_outcomes$is_exciting)
+prop_exciting
  #0.05927411
 ```
 Analysis
@@ -102,7 +107,8 @@ About 72% of the projects have atleast one donor who pays via credit card/giftca
 #5Are schools with higher poverty levels likely to get funded any more than schools with lower poverty levels. 
 ```{r}
 #analysing by poverty level 
-
+Df_outcomeProjects <- merge(data_projects, data_outcomes, by.x="projectid", by.y="projectid", all.x=T)
+data_states_totalprojects_freq <- merge(data_states_totalprojects_freq,fully_funded)
 Df_outcomeProjects$poverty<- 0
 Df_outcomeProjects$poverty[Df_outcomeProjects$poverty_level=="moderate poverty"] <- 1
 Df_outcomeProjects$poverty[Df_outcomeProjects$poverty_level=="high poverty"] <- 2
@@ -175,7 +181,7 @@ Infact 48% of the total projects are posted from 5 states of the 52 :CA, NY, NC,
 ```{r}
 #Merging dataframes
 Df_outcomeProjects <- merge(data_projects, data_outcomes, by.x="projectid", by.y="projectid", all.x=T)
-data_states_totalprojects_freq <- merge(data_states_totalprojects_freq,fully_funded)
+
 
 
 #analysing which states make maximi=um donation transactions
